@@ -43,22 +43,83 @@
          </ol>
        </nav>
        <ol class="panes">
-        <li :class="{active: top===0}">tab1</li>
-        <li :class="{active: top===1}">tab2</li>
-        <li :class="{active: top===2}">tab3</li>
-        <li :class="{active: top===3}">tab4</li>
-        <li :class="{active: top===4}">tab5</li>
-        <li :class="{active: top===5}">tab6</li>
+        <li :class="{active: top===0}">
+          <h3>个人信息</h3>
+          <el-form>
+            <el-form-item label="姓名">
+              <el-input v-model="profile.name"></el-input>
+            </el-form-item>
+            <el-form-item label="城市">
+              <el-input v-model="profile.city"></el-input>
+            </el-form-item>
+            <el-form-item label="出生年月">
+              <el-input v-model="profile.birth"></el-input>
+            </el-form-item>
+          </el-form>
+        </li>
+        <li :class="{active: top===1}">
+          <h3>工作经历</h3>
+          <el-form>
+            <div class="container" v-for="(work,index) in workHistory">
+               <el-form-item label="公司">
+                 <el-input v-model="work.company"></el-input>
+               </el-form-item>
+                <el-form-item label="工作内容">
+                 <el-input v-model="work.content"></el-input>
+               </el-form-item>
+               <i class="el-icon-circle-close" v-on:click="removeWorkHistory(index)"></i>
+            </div>
+            <el-button type="primary" v-on:click="addworkHistory">添加</el-button>
+          </el-form>
+        </li>
+        <li :class="{active: top===2}">
+          <h3>学习经历</h3>
+        </li>
+        <li :class="{active: top===3}">
+          <h3>项目经历</h3>
+        </li>
+        <li :class="{active: top===4}">
+          <h3>获奖情况</h3>
+        </li>
+        <li :class="{active: top===5}">
+          <h3>联系方式</h3>
+        </li>
+        <!--<li v-for="i in [0,1,2,3,4,5]" v-bind:class="{active: top===i}">
+         tab {{i+1}}
+         </li>
+        -->
        </ol>
     </div>
 </template>
 <script>
 export default {
-  data(){
+  data(){//data里只能放数据
     return {
       top:0,
-      icons: ['xingming','gongzuo','shu','xin','jiangbei','dianhua']
+      icons: ['xingming','gongzuo','shu','xin','jiangbei','dianhua'],
+      profile: {
+         name: '',
+         city: '',
+         bitrh: ''
+      },
+      workHistory: [
+        {company: '', content: ''}
+      ]
     }
+  },
+  methods:{
+    addworkHistory(){
+      this.workHistory.push({
+        company:'',content:''
+      })
+    },
+     removeWorkHistory(index ){
+    this.workHistory.splice(index, 1)
+    },
+  },
+ 
+  created(){
+
   }
 }
 </script>
@@ -89,8 +150,21 @@ export default {
        
       }
       > .panes {
+        flex: 1;      
+        .container {
+            position: relative;
+            border-bottom: 1px solid rgb(204, 201, 201);
+            margin-bottom: 20px;
+            .el-icon-circle-close {
+              position: absolute;
+              top: 0;right: 0;
+            }
+        }
         >li{
+          padding: 32px;
           display: none;
+          height: 100%;
+          overflow: auto;
           &.active {
             display: block;
           }
