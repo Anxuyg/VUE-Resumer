@@ -44,34 +44,34 @@
        </nav>
        <ol class="panes">
         <li :class="{active: top===0}">
-           <message v-bind:profile="profile"/>         
+           <message v-bind:profile="resume.profile"/>         
         </li>
         <li :class="{active: top===1}">
-          <ArrayEditor v-bind:items="workHistory" v-bind:labels="{company:'公司',content:'工作内容'}" title="工作经历"/>
+          <ArrayEditor v-bind:items="resume.workHistory" v-bind:labels="{company:'公司',content:'工作内容'}" title="工作经历"/>
         </li>
         <li :class="{active: top===2}">
-          <ArrayEditor v-bind:items="studyHistory" v-bind:labels="{school: '学校',time: '时间',degree:'学位'}" title="学习经历"/> 
+          <ArrayEditor v-bind:items="resume.studyHistory" v-bind:labels="{school: '学校',time: '时间',degree:'学位'}" title="学习经历"/> 
         </li>
         <li :class="{active: top===3}">
-          <ArrayEditor v-bind:items="projects" v-bind:labels="{name:'项目名称',content:'项目内容'}" title="项目经历"/> 
+          <ArrayEditor v-bind:items="resume.projects" v-bind:labels="{name:'项目名称',content:'项目内容'}" title="项目经历"/> 
         </li>
         <li :class="{active: top===4}">
-          <ArrayEditor v-bind:items="awards" v-bind:labels="{name:'奖励详情'}" title="获奖情况"/>
+          <ArrayEditor v-bind:items="resume.awards" v-bind:labels="{name:'奖励详情'}" title="获奖情况"/>
         </li>
         <li :class="{active: top===5}">
           <h3>联系方式</h3>
           <el-form>
             <el-form-item label="QQ">
-               <el-input v-model="phones.qq"></el-input>
+               <el-input v-model="resume.phones.qq"></el-input>
                </el-form-item>
                <el-form-item label="微信">
-                 <el-input v-model="phones.weixin"></el-input>
+                 <el-input v-model="resume.phones.weixin"></el-input>
                </el-form-item>
                <el-form-item label="电话">
-                 <el-input v-model="phones.call"></el-input>
+                 <el-input v-model="resume.phones.call"></el-input>
                </el-form-item>
                <el-form-item label="邮箱">
-                 <el-input v-model="phones.email"></el-input>
+                 <el-input v-model="resume.phones.email"></el-input>
                </el-form-item>
           </el-form>
         </li>
@@ -87,38 +87,12 @@ import message from './message'
 import ArrayEditor from './ArrayEditor'
 export default {
   components: {message, ArrayEditor},
+  props: ['resume'],
   data(){//data里只能放数据
     return {
       top:0,
-      icons: ['xingming','gongzuo','shu','xin','jiangbei','dianhua'],
-      profile: {
-         name: '',
-         city: '',
-         bitrh: ''
-      },
-      workHistory: [
-        {company: '', content: ''}
-      ],
-      studyHistory: [
-        {school:'', time: '', degree:''}
-      ],
-      projects: [
-        {name:'',content:''}
-      ],
-      awards: [
-        {name:''}
-      ],
-      phones: [
-        {call:'',email:'',weixin:'',qq:''}
-      ]
+      icons: ['xingming','gongzuo','shu','xin','jiangbei','dianhua']
     }
-  },
-  methods:{
-    
-  },
- 
-  created(){
-
   }
 }
 </script>

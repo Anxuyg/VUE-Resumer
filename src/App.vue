@@ -1,10 +1,11 @@
 <template>
-  <div id="app">
-     <Topbar class="topbar"/>
+  <div id="app" v-bind:class="{previewMode: previewMode}">
+     <Topbar class="topbar" v-on:preview="preview"/>
      <main>
-       <Editor class="editor"/>
-       <Preview class="preview"/>
+       <Editor v-bind:resume="resume" class="editor"/>
+       <Preview v-bind:resume="resume" class="preview"/>
      </main>
+     <el-button id="exmPreview" v-on:click="exmPreview">退出预览</el-button>
   </div>
 </template><!--html必须的结构-->
 
@@ -17,10 +18,33 @@
  import Editor from './components/Editor.vue'
  import Preview from './components/Preview.vue'
   export default {
+    data(){
+      return{
+        previewMode: false,
+        resume: {
+            profile: {  name: '', city: '', bitrh: '' },
+            workHistory: [
+              {company: '', content: ''}],
+            studyHistory: [
+              {school:'', time: '', degree:''} ],
+            projects: [ {name:'',content:''} ],
+            awards: [{name:''}],
+            phones: { call:'',email:'',weixin:'',qq:''}          
+         }
+      }
+    },
+    methods: {
+      exmPreview(){
+         this.previewMode = false
+      },
+      preview(){
+        this.previewMode = true
+      }
+    },
     components: {
       //注意要引用
       Topbar,Editor,Preview
-    }
+    },
   }
 </script>
 
@@ -62,5 +86,25 @@ main .preview{
   background: #fff;
   border-radius: 5px;
   box-shadow: 0 0 3px hsla(0,0,0,0.5);
+}
+.previewMode > #topbar {
+  display: none;
+}
+.previewMode #editor {
+  display: none;
+}
+.previewMode .preview {
+  max-width: 800px;
+  margin: 20px auto;
+  padding: 20px;
+}
+#exmPreview {
+  display: none
+}
+.previewMode #exmPreview{
+  display: inline-block;
+  position: fixed;
+  right: 16px;
+  bottom: 16px;
 }
 </style>
