@@ -1,6 +1,6 @@
 <template>
   <div>
-    <h3>个人信息</h3>
+    <h3 style="margin-bottom: 20px">个人信息</h3>
         <el-form>
            <el-form-item label="姓名">
               <el-input v-model="profile.name"></el-input>
