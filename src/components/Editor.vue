@@ -44,33 +44,10 @@
        </nav>
        <ol class="panes">
         <li :class="{active: top===0}">
-          <h3>个人信息</h3>
-          <el-form>
-            <el-form-item label="姓名">
-              <el-input v-model="profile.name"></el-input>
-            </el-form-item>
-            <el-form-item label="城市">
-              <el-input v-model="profile.city"></el-input>
-            </el-form-item>
-            <el-form-item label="出生年月">
-              <el-input v-model="profile.birth"></el-input>
-            </el-form-item>
-          </el-form>
+           <message v-bind:profile="profile"/>         
         </li>
         <li :class="{active: top===1}">
-          <h3>工作经历</h3>
-          <el-form>
-            <div class="container" v-for="(work,index) in workHistory">
-               <el-form-item label="公司">
-                 <el-input v-model="work.company"></el-input>
-               </el-form-item>
-                <el-form-item label="工作内容">
-                 <el-input v-model="work.content"></el-input>
-               </el-form-item>
-               <i class="el-icon-circle-close" v-on:click="removeWorkHistory(index)"></i>
-            </div>
-            <el-button type="primary" v-on:click="addworkHistory">添加</el-button>
-          </el-form>
+          <work v-bind:workHistory="workHistory"/>
         </li>
         <li :class="{active: top===2}">
           <h3>学习经历</h3>
@@ -92,7 +69,10 @@
     </div>
 </template>
 <script>
+import message from './message'
+import work from './work'
 export default {
+  components: {message, work},
   data(){//data里只能放数据
     return {
       top:0,
@@ -108,14 +88,7 @@ export default {
     }
   },
   methods:{
-    addworkHistory(){
-      this.workHistory.push({
-        company:'',content:''
-      })
-    },
-     removeWorkHistory(index ){
-    this.workHistory.splice(index, 1)
-    },
+    
   },
  
   created(){
