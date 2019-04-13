@@ -50,15 +50,12 @@
           <ArrayEditor v-bind:items="resume.workHistory" v-bind:labels="{company:'公司',content:'工作内容'}" title="工作经历"/>
         </li>
         <li :class="{active: top===2}">
-          <ArrayEditor v-bind:items="resume.studyHistory" v-bind:labels="{school: '学校',time: '时间',degree:'学位'}" title="学习经历"/> 
+          <ArrayEditor v-bind:items="resume.studyHistory" v-bind:labels="{school: '学校',degree:'学位',time: '毕业时间'}" title="学习经历"/> 
         </li>
         <li :class="{active: top===3}">
           <ArrayEditor v-bind:items="resume.projects" v-bind:labels="{name:'项目名称',content:'项目内容'}" title="项目经历"/> 
         </li>
         <li :class="{active: top===4}">
-          <ArrayEditor v-bind:items="resume.awards" v-bind:labels="{name:'奖励详情'}" title="获奖情况"/>
-        </li>
-        <li :class="{active: top===5}">
           <h3>联系方式</h3>
           <el-form>
             <el-form-item label="QQ">
@@ -75,6 +72,10 @@
                </el-form-item>
           </el-form>
         </li>
+        <li :class="{active: top===5}">
+          <ArrayEditor v-bind:items="resume.awards" v-bind:labels="{name:'奖励详情'}" title="获奖情况"/>
+        </li>
+        
         <!--<li v-for="i in [0,1,2,3,4,5]" v-bind:class="{active: top===i}">
          tab {{i+1}}
          </li>
@@ -108,6 +109,7 @@ export default {
         > ol >li {
            text-align: center;
            padding: 16px 0;
+           
            > .icon {
              width: 24px;
              height: 24px;

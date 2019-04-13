@@ -26,10 +26,14 @@
             workHistory: [
               {company: '', content: ''}],
             studyHistory: [
-              {school:'', time: '', degree:''} ],
+              {school:'',  degree:'',time: ''} ],
             projects: [ {name:'',content:''} ],
             awards: [{name:''}],
             phones: { call:'',email:'',weixin:'',qq:''}          
+         },
+         dengluye: {
+           denglu: {name: '', password: ''},
+           zhuce: {name:'',password:''}
          }
       }
     },
@@ -50,6 +54,7 @@
 
 <style>
 #app {
+  box-sizing: border-box;
   font-family: 'Avenir', Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
@@ -71,6 +76,7 @@
   flex: 1;
   /*让目标都有相同的长度，且忽略它们内部的内容： */
   background: #DDD;
+  height: 100vh;
 }
 #app main .editor{
   width: 40em;
@@ -83,9 +89,10 @@
 #app main .preview{
   flex: 1;
   margin: 16px 16px 16px 8px;
-  background: #fff;
+  background: #DDD;
   border-radius: 5px;
   box-shadow: 0 0 3px hsla(0,0,0,0.5);
+  overflow: auto;
 }
 .previewMode > #topbar {
   display: none;
@@ -95,8 +102,10 @@
 }
 .previewMode .preview {
   max-width: 800px;
-  margin: 20px auto;
-  padding: 20px;
+  margin:0 auto;
+  position: relative;
+  left: 20%;
+  
 }
 #exmPreview {
   display: none

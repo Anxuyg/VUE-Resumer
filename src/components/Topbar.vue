@@ -1,14 +1,14 @@
 <template>
     <div id="topbar">
       <div class="logo">
-        Vue
+        Vue-Resume
       </div>
       <div class="actions">
         <el-button type="primary">登录</el-button>
         <el-button>注册</el-button>
         <el-button v-on:click="preview">预览</el-button>
-        <el-button id="exmPreview">退出预览</el-button>
       </div>
+      
     </div>
 </template>
 
